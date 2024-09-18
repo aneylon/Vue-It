@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-if</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+      <p v-if="show">Show it!</p>
+      <p v-else>Or not!</p>
+      <p v-if="number === 5">The number is 5</p>
+      <p v-else-if="number<5">The number is less than 5</p>
+      <p v-else>The number is more than 5</p>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            show: true,
+            number: 6,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
