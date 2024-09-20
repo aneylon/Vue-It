@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+      <p>{{count}}</p>
+      <button v-on:click="count++">Add it up!</button>
+      <p @click="console.log('test')">Click to Log to console.</p>
+      <p @click="doAThing">Click to do a thing. (in the console)</p>
+      <p>
+        <a href="https://www.w3schools.com/vue/vue_events.php"
+          >W3 Schools Vue Events</a
+        >
+      </p>
+    </div>
+    <script>
+      function buttonClick() {
+        console.log("click them buttons!");
+      }
+      const app = Vue.createApp({
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        methods: {
+          doAThing() {
+            console.log("Doing a thing!");
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
