@@ -3,28 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>v-for</title>
+    <title>Methods</title>
   </head>
   <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <div id="app">
-      <ol>
-        <li v-for="item in items">{{item}}</li>
-      </ol>
+      <p>{{random}}</p>
+      <button @click="newRandomNumber">New Random Number</button>
+      <p>
+        <a href="https://www.w3schools.com/vue/vue_methods.php"
+          >W3 Schools Vue Methods</a
+        >
+      </p>
     </div>
-
-    <p>
-      <a href="https://www.w3schools.com/vue/vue_v-for.php"
-        >W3 Schools Vue v-for</a
-      >
-    </p>
     <script>
-      console.log("doing it!");
       const app = Vue.createApp({
         data() {
           return {
-            items: ["one", "two", "three"],
+            random: 0,
           };
+        },
+        methods: {
+          newRandomNumber() {
+            this.random = Math.floor(Math.random() * 10);
+          },
         },
       });
       app.mount("#app");
