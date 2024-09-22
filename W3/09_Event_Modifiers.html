@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Methods</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+      <p>{{oneTimeText}}</p>
+      <button v-on:click.once="oneTime">Only once.</button>
+      <p>
+        <a href="https://www.w3schools.com/vue/vue_event-modifiers.php"
+          >W3 Schools Vue Event Modifiers</a
+        >
+      </p>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            oneTimeText: "",
+          };
+        },
+        methods: {
+          oneTime() {
+            console.log("Only once.");
+            this.oneTimeText = "One time and one time only.";
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
