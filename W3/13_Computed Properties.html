@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computed Properties</title>
+    <style>
+      #app {
+        border: dashed black 1px;
+        display: inline-block;
+        padding: 0 20px;
+      }
+      #app label,
+      #app li {
+        padding: 5px;
+        border-radius: 5px;
+      }
+      #app label:hover,
+      #app li:hover {
+        cursor: pointer;
+        background-color: lightgray;
+      }
+      ul {
+        list-style-type: none;
+      }
+      li {
+        margin: 2px;
+        background-color: rgb(211, 254, 211);
+      }
+      .impClass {
+        background-color: rgb(255, 202, 202);
+      }
+      #ulFound li {
+        text-decoration: line-through;
+        background-color: rgb(230, 230, 230);
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+      <p><input type="checkbox" v-model="chbxVal" />{{isImportant}}</p>
+      <p>
+        <a
+          href="https://www.w3schools.com/vue/vue_computed-properties.php"
+          target="_blank"
+          >W3 Schools Vue Computed Properties</a
+        >
+      </p>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            things: "stuff",
+            chbxVal: false,
+          };
+        },
+        computed: {
+          isImportant() {
+            if (this.chbxVal === true) return "yes";
+            else return "no";
+          },
+        },
+        methods: {
+          doIt() {
+            console.log("Do It!");
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
