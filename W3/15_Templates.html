@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watchers</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <p>Before the template</p>
+    <div id="app">...loading...</div>
+    <p>After the template</p>
+    <p>
+      <a href="https://www.w3schools.com/vue/vue_templates.php" target="_blank"
+        >W3 Schools Vue Templates</a
+      >
+    </p>
+    <script>
+      const app = Vue.createApp({
+        template: `
+        <h1>{{message}}</h1>
+        <p>This gets added into the app section.</p>
+        `,
+        data() {
+          return {
+            message: "Using Templates",
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
