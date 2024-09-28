@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watchers</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+      <input type="range" v-model="rangeVal" />
+      <p>{{rangeVal}}</p>
+      <p>
+        <a href="https://www.w3schools.com/vue/vue_watchers.php" target="_blank"
+          >W3 Schools Vue Watchers</a
+        >
+      </p>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            rangeVal: 70,
+          };
+        },
+        watch: {
+          rangeVal(val) {
+            console.log("watch it!");
+            if (val > 20 && val < 60) {
+              if (val < 40) {
+                this.rangeVal = 20;
+              } else {
+                this.rangeVal = 60;
+              }
+            }
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
