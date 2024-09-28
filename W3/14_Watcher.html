@@ -4,12 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Watchers</title>
+    <style>
+      #clickArea {
+        width: 200px;
+        height: 50px;
+        background-color: lightblue;
+        border: solid black 2px;
+      }
+      .valid {
+        color: green;
+      }
+      .invalid {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <div id="app">
       <input type="range" v-model="rangeVal" />
       <p>{{rangeVal}}</p>
+      <div v-on:click="updatePos" id="clickArea"></div>
+      <p>{{xDiff}}</p>
+      <input type="email" v-model="inputAddress" />
+      <p v-bind:class="myClass">{{feedbackText}}</p>
       <p>
         <a href="https://www.w3schools.com/vue/vue_watchers.php" target="_blank"
           >W3 Schools Vue Watchers</a
@@ -21,9 +39,25 @@
         data() {
           return {
             rangeVal: 70,
+            xPos: 0,
+            xDiff: 0,
+            inputAddress: "",
+            feedbackText: "",
+            myClass: "invalid",
           };
         },
         watch: {
+          inputAddress(newValue, oldValue) {
+            if (!newValue.includes("@")) {
+              this.feedbackText = "The e-mail address is not valid";
+              this.myClass = "invalid";
+            } else if (!oldValue.includes("@") && newValue.includes("@")) {
+              this.feedbackText = "Perfect! You fixed it!";
+              this.myClass = "valid";
+            } else {
+              this.feedbackText = "The e-mail address is valid";
+            }
+          },
           rangeVal(val) {
             console.log("watch it!");
             if (val > 20 && val < 60) {
@@ -33,6 +67,14 @@
                 this.rangeVal = 60;
               }
             }
+          },
+          xPos(newVal, oldVal) {
+            this.xDiff = newVal - oldVal;
+          },
+        },
+        methods: {
+          updatePos(event) {
+            this.xPos = event.offsetX;
           },
         },
       });
