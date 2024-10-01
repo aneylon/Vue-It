@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Net Ninja 01</title>
+  </head>
+  <body>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <div id="app">
+      <h1>{{stuff}}</h1>
+      <div v-if="showBooks">
+        <p>{{title}} - {{author}} - {{age}}</p>
+        <button v-on:click="age++">Increase</button>
+        <button v-on:click="age--">Decrease</button>
+        <button @click="title = 'stuff'">Change</button>
+        <button @click="changeTitle">Change Two</button>
+        <button @click="changeTitle('thingeroo')">Change Moar</button>
+      </div>
+
+      <button @click="toggleShowBooks">
+        {{ showBooks ? 'Hide Books' : 'Show Books'}}
+      </button>
+
+      <div v-show="showBooks">Showing Books</div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
