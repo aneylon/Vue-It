@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Example</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <form v-on:submit.prevent="login">
+        <p>
+          <input
+            type="email"
+            id="userName"
+            placeholder="Username"
+            v-model="username"
+            required
+          />
+        </p>
+        <p>
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            v-model="password"
+            required
+          />
+        </p>
+        <p>
+          <button type="submit">Login</button>
+        </p>
+      </form>
+    </div>
+    <script src="Login.js"></script>
+  </body>
+</html>
