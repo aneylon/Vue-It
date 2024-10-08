@@ -6,8 +6,8 @@ const app = Vue.createApp({
     };
   },
   methods: {
-    login() {
-      console.log("login it in.", this.username, this.password);
+    signup() {
+      console.log("sign it up!", this.username, this.password);
     },
   },
 });
