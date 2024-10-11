@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Cards</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <p>{{currentCard}}</p>
+        <p @click="toggleShowAnswer">{{shuffledCards[currentCard].question}}</p>
+        <p v-show="showAnswer">{{shuffledCards[currentCard].answer}}</p>
+        <p>{{shuffledCards[currentCard].explain}}</p>
+      </div>
+      <div>
+        <button @click="Know">Know</button>
+        <button @click="DontKnow">Don't Know</button>
+        <button @click="NotSure">Not Sure</button>
+      </div>
+    </div>
+    <script src="StudyCards.js"></script>
+  </body>
+</html>
