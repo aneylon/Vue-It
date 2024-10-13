@@ -53,10 +53,13 @@ const app = Vue.createApp({
       this.Shuffle();
     },
     Shuffle() {
-      console.log("Every day I'm shuffling");
+      console.log(this.random(this.shuffledCards.length));
     },
     toggleShowAnswer() {
       this.showAnswer = !this.showAnswer;
+    },
+    random(number) {
+      return Math.floor(Math.random() * number) + 1;
     },
   },
 });
