@@ -7,7 +7,7 @@ const app = Vue.createApp({
   beforeMount() {
     // this happens next, Data is available.
     // console.log("first things first");
-    this.shuffledCards = this.cards.slice();
+    this.knownCards = this.cards.slice();
     this.Shuffle();
   },
   data() {
@@ -33,6 +33,16 @@ const app = Vue.createApp({
           answer: "Fourth",
           explain: "Fourth",
         },
+        {
+          question: "Fifth",
+          answer: "Fifth",
+          explain: "Fifth",
+        },
+        {
+          question: "Sixth",
+          answer: "Sixth",
+          explain: "Sixth",
+        },
       ],
       shuffledCards: [],
       knownCards: [],
@@ -48,14 +58,17 @@ const app = Vue.createApp({
     },
     Know() {
       console.log("Know it!");
+      this.knownCards.push(this.shuffledCards[this.currentCard]);
       this.NextCard();
     },
     DontKnow() {
       console.log("Don't Know");
+      this.dontKnowCards.push(this.shuffledCards[this.currentCard]);
       this.NextCard();
     },
     NotSure() {
       console.log("Not Sure");
+      this.notSureCards.push(this.shuffledCards[this.currentCard]);
       this.NextCard();
     },
     NextCard() {
@@ -67,25 +80,42 @@ const app = Vue.createApp({
       }
     },
     Shuffle() {
-      console.log("shuffle");
-      let length = this.shuffledCards.length;
-      for (var i = 0; i < this.shuffledCards.length; i++) {
-        let currentCard = this.shuffledCards[i];
-        let randomNumber = this.random(length);
-        let shuffleCard = this.shuffledCards[randomNumber];
-        this.shuffledCards[i] = shuffleCard;
-        this.shuffledCards[randomNumber] = currentCard;
-      }
-      // shuffle know
-      // shuffle not sure
-      // shuffle don't know
-      // recombine in reverse order
+      // Shuffle each answer deck
+      debugger;
+      let shuffledKnownCards = this.randomize(this.knownCards);
+      let shuffledNotSureCards = this.randomize(this.notSureCards);
+      let shuffledDontKnowCards = this.randomize(this.dontKnowCards);
+      // recombine in least known order and set as shuffledCards
+      this.shuffledCards = [
+        ...shuffledDontKnowCards,
+        ...shuffledNotSureCards,
+        ...shuffledKnownCards,
+      ];
+      // this.shuffledCards = this.shuffledCards.concat(shuffledDontKnowCards);
+      // this.shuffledCards = this.shuffledCards.concat(shuffledNotSureCards);
+      // this.shuffledCards = this.shuffledCards.concat(shuffledKnownCards);
+      // reset answer decks
+      this.knownCards = [];
+      this.notSureCards = [];
+      this.dontKnowCards = [];
     },
     toggleShowAnswer() {
       this.showAnswer = !this.showAnswer;
     },
     random(number) {
       return Math.floor(Math.random() * number);
+    },
+    randomize(cards) {
+      let copiedCards = cards.slice();
+      let deckLength = copiedCards.length;
+      for (var i = 0; i < deckLength; i++) {
+        let currentCard = copiedCards[i];
+        let randomNumber = this.random(length);
+        let shuffleCard = copiedCards[randomNumber];
+        copiedCards[i] = shuffleCard;
+        copiedCards[randomNumber] = currentCard;
+      }
+      return copiedCards;
     },
   },
 });
