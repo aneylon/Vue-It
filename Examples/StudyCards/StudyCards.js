@@ -1,11 +1,14 @@
 console.log("let's study it!");
 const app = Vue.createApp({
   setup() {
-    console.log("yo?");
+    // this happens first, Data is not available.
+    // console.log("yo?");
   },
   beforeMount() {
-    console.log("first things first");
+    // this happens next, Data is available.
+    // console.log("first things first");
     this.shuffledCards = this.cards.slice();
+    this.Shuffle();
   },
   data() {
     return {
@@ -32,6 +35,9 @@ const app = Vue.createApp({
         },
       ],
       shuffledCards: [],
+      knownCards: [],
+      notSureCards: [],
+      dontKnowCards: [],
       currentCard: 0,
       showAnswer: false,
     };
@@ -42,24 +48,44 @@ const app = Vue.createApp({
     },
     Know() {
       console.log("Know it!");
-      this.Shuffle();
+      this.NextCard();
     },
     DontKnow() {
       console.log("Don't Know");
-      this.Shuffle();
+      this.NextCard();
     },
     NotSure() {
       console.log("Not Sure");
-      this.Shuffle();
+      this.NextCard();
+    },
+    NextCard() {
+      if (this.currentCard === this.shuffledCards.length - 1) {
+        this.Shuffle();
+        this.currentCard = 0;
+      } else {
+        this.currentCard++;
+      }
     },
     Shuffle() {
-      console.log(this.random(this.shuffledCards.length));
+      console.log("shuffle");
+      let length = this.shuffledCards.length;
+      for (var i = 0; i < this.shuffledCards.length; i++) {
+        let currentCard = this.shuffledCards[i];
+        let randomNumber = this.random(length);
+        let shuffleCard = this.shuffledCards[randomNumber];
+        this.shuffledCards[i] = shuffleCard;
+        this.shuffledCards[randomNumber] = currentCard;
+      }
+      // shuffle know
+      // shuffle not sure
+      // shuffle don't know
+      // recombine in reverse order
     },
     toggleShowAnswer() {
       this.showAnswer = !this.showAnswer;
     },
     random(number) {
-      return Math.floor(Math.random() * number) + 1;
+      return Math.floor(Math.random() * number);
     },
   },
 });

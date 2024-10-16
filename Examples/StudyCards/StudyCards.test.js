@@ -1,5 +1,3 @@
-console.log("test it out");
-
 function Add(one, two) {
   return one + two;
 }
@@ -9,7 +7,10 @@ function Sub(one, two) {
 }
 
 QUnit.module("Sub", function () {
-  QUnit.test("Two numbers", function (assert) {
+  QUnit.test("Add Two numbers", function (assert) {
+    assert.equal(Add(1, 2), 3);
+  });
+  QUnit.test("Subtract two numbers", function (assert) {
     assert.equal(Sub(3, 1), 2);
   });
 });
