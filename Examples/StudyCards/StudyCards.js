@@ -1,12 +1,9 @@
-console.log("let's study it!");
 const app = Vue.createApp({
   setup() {
     // this happens first, Data is not available.
-    // console.log("yo?");
   },
   beforeMount() {
     // this happens next, Data is available.
-    // console.log("first things first");
     this.knownCards = this.cards.slice();
     this.Shuffle();
   },
@@ -50,24 +47,31 @@ const app = Vue.createApp({
       dontKnowCards: [],
       currentCard: 0,
       showAnswer: false,
+      newQuestion: "",
+      newAnswer: "",
+      newExplain: "",
     };
   },
   methods: {
     AddCard() {
-      console.log("Add card");
+      this.shuffledCards.push({
+        question: this.newQuestion,
+        answer: this.newAnswer,
+        explain: this.newExplain,
+      });
+      this.newQuestion = "";
+      this.newAnswer = "";
+      this.newExplain = "";
     },
     Know() {
-      console.log("Know it!");
       this.knownCards.push(this.shuffledCards[this.currentCard]);
       this.NextCard();
     },
     DontKnow() {
-      console.log("Don't Know");
       this.dontKnowCards.push(this.shuffledCards[this.currentCard]);
       this.NextCard();
     },
     NotSure() {
-      console.log("Not Sure");
       this.notSureCards.push(this.shuffledCards[this.currentCard]);
       this.NextCard();
     },
@@ -81,7 +85,6 @@ const app = Vue.createApp({
     },
     Shuffle() {
       // Shuffle each answer deck
-      debugger;
       let shuffledKnownCards = this.randomize(this.knownCards);
       let shuffledNotSureCards = this.randomize(this.notSureCards);
       let shuffledDontKnowCards = this.randomize(this.dontKnowCards);

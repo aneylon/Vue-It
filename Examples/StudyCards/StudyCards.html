@@ -19,6 +19,22 @@
         <button @click="DontKnow">Don't Know</button>
         <button @click="NotSure">Not Sure</button>
       </div>
+      <div>
+        <input
+          type="text"
+          placeholder="New Question"
+          v-model="newQuestion"
+        /><input
+          type="text"
+          placeholder="New Answer"
+          v-model="newAnswer"
+        /><input
+          type="text"
+          placeholder="New Explanation"
+          v-model="newExplain"
+        />
+        <button @click="AddCard">Add new card</button>
+      </div>
     </div>
     <script src="StudyCards.js"></script>
   </body>
