@@ -6,11 +6,15 @@ A repository for learning Vue js
 
 [Vue.js](https://vuejs.org/)
 
-### Free Tutorials
+### CDN Link
+
+[Official CDN link](https://unpkg.com/vue@3/dist/vue.global.js)
+
+## Free Tutorials
 
 [W3 Schools Vue](https://www.w3schools.com/vue/)
 
-### Paid Tutorials
+## Paid Tutorials
 
 [Net Ninja](https://netninja.dev/)
 
