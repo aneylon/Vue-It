@@ -6,6 +6,8 @@ A repository for learning Vue js
 
 [Vue.js](https://vuejs.org/)
 
+[Vue CLI](https://vli.vuejs.org/)
+
 ### CDN Link
 
 [Official CDN link](https://unpkg.com/vue@3/dist/vue.global.js)
