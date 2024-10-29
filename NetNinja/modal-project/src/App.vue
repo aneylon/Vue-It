@@ -1,11 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <h1>{{ title }}</h1>
-  <input type="text" ref="name" />
-  <button @click="handleClick">Click it</button>
-  <Modal title="Stuff!" content="Things goes here." />
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-  <!-- <MyComponent message="Hey Vue!" /> -->
+  <div>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <h1>{{ title }}</h1>
+    <input type="text" ref="name" />
+    <button @click="handleClick">Click it</button>
+    <button @click.alt="toggleModal">open modal (alt)</button>
+
+    <div v-if="showModal">
+      <Modal
+        title="Stuff!"
+        content="Things goes here."
+        :moarThings="moarThings"
+        theme="sale"
+        @close="toggleModal"
+      />
+    </div>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+    <!-- <MyComponent message="Hey Vue!" /> -->
+  </div>
 </template>
 
 <script>
@@ -23,9 +35,14 @@ export default {
   data() {
     return {
       title: "My First Vue App!",
+      moarThings: "Moar things here",
+      showModal: false,
     };
   },
   methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
     handleClick() {
       console.log(this.$refs.name.value);
       console.log(this.$refs.name);

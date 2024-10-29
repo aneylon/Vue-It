@@ -1,9 +1,10 @@
 <template>
-  <div class="backdrop">
-    <div class="modal">
-      <h1 id="modal">{{ title }}</h1>
+  <div class="backdrop" @click.self="closeModal">
+    <div class="modal" :class="{ sale: theme === 'sale' }">
+      <h1>{{ title }}</h1>
 
       <p>{{ content }}</p>
+      <p>{{ moarThings }}</p>
     </div>
   </div>
 </template>
@@ -15,11 +16,19 @@ export default {
   props: {
     title: String,
     content: String,
+    moarThings: String,
+    theme: String,
+  },
+  methods: {
+    closeModal() {
+      console.log("close modal");
+      this.$emit("close");
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
 #modal {
   color: blue;
   background-color: orange;
@@ -37,5 +46,15 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
+}
+h1 {
+  color: teal;
+}
+.modal.sale {
+  background: crimson;
+  color: white;
+}
+.modal.sale h1 {
+  color: white;
 }
 </style>
