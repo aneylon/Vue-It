@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VUE CDN</title>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+      body {
+        background: #eee;
+        max-width: 960px;
+        margin: 20px auto;
+      }
+      p,
+      h3,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+        background: #fff;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      li.fav {
+        background: lightgreen;
+        color: white;
+      }
+      .box {
+        padding: 100px 0;
+        width: 400px;
+        text-align: center;
+        background: #ddd;
+        margin: 20px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hey!</h1>
+    <div id="app">
+      <h2>Other template</h2>
+      <a :href="url">Link!</a>
+      <div v-if="showBooks">
+        <ul>
+          <li
+            v-for="book in filteredBooks"
+            :class="{ fav: book.isFav}"
+            @click="toggleFav(book)"
+          >
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
+        <!-- <p>{{title}} - {{author}} - {{age}}</p>
+        <button v-on:click="age ++">increase age</button>
+        <button @click="addItUp">increase age</button>
+        <button @click="countItDown">decrease age</button> -->
+      </div>
+      <button @click="toggleShowBooks">
+        <span v-if="showBooks">Hide Books</span>
+        <!-- <span v-else>Show Books</span> -->
+        <span v-if="!showBooks">Show Books</span>
+      </button>
+      <div v-show="showBooks">Showing Books</div>
+      <hr />
+      <!-- <div class="box" @mouseover="handleEvent">mouse over</div>
+      <div class="box" @mouseleave="handleEvent">mouse leave</div>
+      <div class="box" @dblclick="handleEvent">double click</div>
+      <div class="box" @mousemove="handleMouseMove">
+        position - {{x}} - {{y}}
+      </div> -->
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
